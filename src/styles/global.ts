@@ -24,7 +24,17 @@ export default createGlobalStyle`
  }
 
  #app {
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ button{
+    cursor: pointer;
+  }
+
+ a {
+    color: inherit;
+    text-decoration: none;
  }
 `;
