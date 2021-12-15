@@ -6,8 +6,8 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "prettier",
-        "airbnb-typescript"
+        "airbnb-typescript",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -21,9 +21,12 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "prettier"
+        "prettier",
+        "react-hooks"
     ],
     "rules": {
+        "react-hooks/exhaustive-deps": "warn",
+        "react/require-default-props": 0,
         "linebreak-style": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "import/prefer-default-export": "off",
@@ -40,6 +43,22 @@
         ],
         "react/react-in-jsx-scope": [
             0
-        ]
+        ],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
     }
 }
