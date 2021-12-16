@@ -5,6 +5,8 @@ const StyledContainer = styled.div`
   flex-direction: column;
 
   width: 100vw;
+  max-width: 800px;
+  margin: 0 auto;
 
   justify-content: center;
   align-items: center;
@@ -25,7 +27,14 @@ const StyledImage = styled.img`
   width: 100%;
   height: 100%;
 
+  max-width: 300px;
+
   margin-top: 5rem;
+`;
+
+const StyledLoading = styled.span`
+  margin-top: 1rem;
+  font-weight: bold;
 `;
 
 const StyledTitle = styled.h1`
@@ -136,6 +145,7 @@ export {
   StyledContainer,
   StyledForm,
   StyledImage,
+  StyledLoading,
   StyledInput,
   StyledLabel,
   StyledButton,
