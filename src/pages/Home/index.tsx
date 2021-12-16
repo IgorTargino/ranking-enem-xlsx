@@ -7,6 +7,7 @@ import {
   StyledContainer,
   StyledContainerInputFile,
   StyledRankList,
+  StyledLoading,
   StyledTitle,
   StyledForm,
   StyledInput,
@@ -33,7 +34,7 @@ const Home = () => {
 
   return (
     <StyledContainer>
-      {loading && <span>LOADING...</span>}
+      {loading && <StyledLoading>Carregando...</StyledLoading>}
 
       {!currentSchools ? (
         <StyledContainerInputFile>
@@ -45,10 +46,10 @@ const Home = () => {
               type="file"
               onChange={(event: any) => onSubmit(event.target.files[0])}
             />
-            <StyledImage src={pathImage} />
 
             {error && <span>{error}</span>}
           </StyledForm>
+          <StyledImage src={pathImage} />
         </StyledContainerInputFile>
       ) : (
         <StyledRankList>
