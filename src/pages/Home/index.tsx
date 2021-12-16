@@ -1,25 +1,46 @@
-import { useEffect } from 'react';
+import Form from '../../components/Form';
 import { useSchoolContext } from '../../context/SchoolContext';
-import readExcel from '../../utils/readExcel';
 
-export default function Home() {
-  const { allSchoolList, setAllSchoolList } = useSchoolContext();
+import {
+  StyledContainer,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+} from './styles';
 
-  const handleInput = async (file: File) => {
-    const data = await readExcel(file);
-    setAllSchoolList(data);
+const Home = () => {
+  const { currentSchools, getSchoolData, loading, error } = useSchoolContext();
+
+  const onSubmit = (file: File) => {
+    getSchoolData(file);
   };
 
-  useEffect(() => {
-    console.log(allSchoolList);
-  }, [allSchoolList]);
-
   return (
-    <div>
-      <input
-        type="file"
-        onChange={(event: any) => handleInput(event.target.files[0])}
-      />
-    </div>
+    <StyledContainer>
+      {loading && <span>LOADING...</span>}
+
+      {!currentSchools ? (
+        <StyledForm>
+          <StyledLabel>Enviar o arquivo...</StyledLabel>
+          <StyledInput
+            type="file"
+            onChange={(event: any) => onSubmit(event.target.files[0])}
+          />
+          {error && <span>{error}</span>}
+        </StyledForm>
+      ) : (
+        <>
+          <Form />
+          {currentSchools.map((school) => (
+            <div key={school['Média da escola (provas objetivas)']}>
+              <h2>{school['Dependencia Administrativa']}</h2>
+              <h2>{school.NO_ENTIDADE}</h2>
+            </div>
+          ))}
+        </>
+      )}
+    </StyledContainer>
   );
-}
+};
+
+export default Home;
