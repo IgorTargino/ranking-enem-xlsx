@@ -23,6 +23,7 @@ interface SchoolContextData {
   getSchoolData: (value: File) => void;
   setFilteredSchools: (value: School[] | undefined) => void;
   setLoading: (value: boolean) => void;
+  updateNumberLoadedSchool: () => void;
 }
 
 const SchoolContext = createContext({} as SchoolContextData);
@@ -34,6 +35,7 @@ const SchoolContextProvider = ({ children }: SchoolContextProvideProps) => {
   const [allSchools, setAllSchools] = useState<School[]>([]);
   const [currentSchools, setCurrentSchools] = useState<School[]>();
   const [filteredSchools, setFilteredSchools] = useState<School[]>();
+  const [numberLoadedSchool, setNumberLoadedSchool] = useState(5);
 
   const getSchoolData = async (file: File) => {
     try {
@@ -49,13 +51,17 @@ const SchoolContextProvider = ({ children }: SchoolContextProvideProps) => {
     }
   };
 
+  const updateNumberLoadedSchool = () => {
+    setNumberLoadedSchool(numberLoadedSchool + 5);
+  };
+
   useEffect(() => {
     if (!isFirstRender.current) {
-      setCurrentSchools(filteredSchools?.slice(0, 5));
+      setCurrentSchools(filteredSchools?.slice(0, numberLoadedSchool));
     }
 
     isFirstRender.current = false;
-  }, [filteredSchools]);
+  }, [filteredSchools, numberLoadedSchool]);
 
   return (
     <SchoolContext.Provider
@@ -68,6 +74,7 @@ const SchoolContextProvider = ({ children }: SchoolContextProvideProps) => {
         getSchoolData,
         setFilteredSchools,
         setLoading,
+        updateNumberLoadedSchool,
       }}
     >
       {children}
