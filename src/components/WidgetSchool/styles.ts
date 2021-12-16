@@ -6,6 +6,19 @@ const StyledContainer = styled.div`
 
   width: 100%;
   height: 100%;
+
+  border: 1px solid #222;
+  padding: 0.5rem;
+
+  border-color: ${(props) => props.theme.color.borderInput};
+  background: ${(props) => props.theme.color.backgroundInput};
 `;
 
-export { StyledContainer };
+const StyledRow = styled.div`
+  strong {
+    color: ${(props) => props.theme.color.textInputEntered};
+    margin-right: 0.2rem;
+  }
+`;
+
+export { StyledContainer, StyledRow };

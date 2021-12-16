@@ -1,31 +1,41 @@
 import React from 'react';
 import School from '../../types/school';
 
-import { StyledContainer } from './styles';
+import { StyledContainer, StyledRow } from './styles';
 
 interface Props {
   school: School;
 }
 const WidgetSchool = ({ school }: Props) => (
   <StyledContainer>
-    <span>
-      {school.NO_MUNICIPIO_ESC} - {school.SG_UF}
-    </span>
-    <span>Escola: {school.NO_ENTIDADE}</span>
-    <span>
-      Posição no Brasil: {school['Posição (média provas objetivas) Brasil']}
-    </span>
-    <span>
-      Posição no Estado: {school['Posição (média provas objetivas) UF']}
-    </span>
-    <span>Porte da escola: {school.PORTE_DA_ESCOLA}</span>
-    <span>
-      Nota média das provas objetivas:
+    <StyledRow>
+      <strong>
+        {school.NO_MUNICIPIO_ESC} - {school.SG_UF}
+      </strong>
+    </StyledRow>
+    <StyledRow>
+      <strong>Escola: </strong>
+      {school.NO_ENTIDADE}
+    </StyledRow>
+    <StyledRow>
+      <strong>Posição no Brasil:</strong>{' '}
+      {school['Posição (média provas objetivas) Brasil']}
+    </StyledRow>
+    <StyledRow>
+      <strong>Posição no Estado:</strong>
+      {school['Posição (média provas objetivas) UF']}
+    </StyledRow>
+    <StyledRow>
+      <strong>Porte da escola:</strong> {school.PORTE_DA_ESCOLA}
+    </StyledRow>
+    <StyledRow>
+      <strong>Nota média das provas objetivas:</strong>
       {school['Média da escola (provas objetivas)'].toFixed(2)}
-    </span>
-    <span>
-      Nota média das redações: {school['Média (NOTA_REDACAO)'].toFixed(2)}
-    </span>
+    </StyledRow>
+    <StyledRow>
+      <strong>Nota média das redações:</strong>
+      {school['Média (NOTA_REDACAO)'].toFixed(2)}
+    </StyledRow>
   </StyledContainer>
 );
 
