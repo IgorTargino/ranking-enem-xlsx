@@ -1,17 +1,22 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Form from '../../components/Form';
 import WidgetSchool from '../../components/WidgetSchool';
 import { useSchoolContext } from '../../context/SchoolContext';
 
 import {
   StyledContainer,
+  StyledContainerInputFile,
+  StyledRankList,
+  StyledTitle,
   StyledForm,
   StyledInput,
   StyledLabel,
   StyledButton,
   StyledWidgetList,
-  StyledSecondaryContainer,
+  StyledImage,
 } from './styles';
+
+import pathImage from '../../assets/image-home.svg';
 
 const Home = () => {
   const {
@@ -26,25 +31,27 @@ const Home = () => {
     getSchoolData(file);
   };
 
-  useEffect(() => {
-    console.log(currentSchools);
-  }, [currentSchools]);
-
   return (
     <StyledContainer>
       {loading && <span>LOADING...</span>}
 
       {!currentSchools ? (
-        <StyledForm>
-          <StyledLabel>Enviar o arquivo...</StyledLabel>
-          <StyledInput
-            type="file"
-            onChange={(event: any) => onSubmit(event.target.files[0])}
-          />
-          {error && <span>{error}</span>}
-        </StyledForm>
+        <StyledContainerInputFile>
+          <StyledTitle>RANK INEP</StyledTitle>
+          <StyledForm>
+            <StyledLabel>Enviar o arquivo...</StyledLabel>
+
+            <StyledInput
+              type="file"
+              onChange={(event: any) => onSubmit(event.target.files[0])}
+            />
+            <StyledImage src={pathImage} />
+
+            {error && <span>{error}</span>}
+          </StyledForm>
+        </StyledContainerInputFile>
       ) : (
-        <StyledSecondaryContainer>
+        <StyledRankList>
           <Form />
           <StyledWidgetList>
             {currentSchools.map((school) => (
@@ -58,7 +65,7 @@ const Home = () => {
           <StyledButton onClick={() => updateNumberLoadedSchool()}>
             Carregar mais
           </StyledButton>
-        </StyledSecondaryContainer>
+        </StyledRankList>
       )}
     </StyledContainer>
   );

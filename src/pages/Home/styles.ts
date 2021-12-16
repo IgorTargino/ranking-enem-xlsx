@@ -5,12 +5,37 @@ const StyledContainer = styled.div`
   flex-direction: column;
 
   width: 100vw;
-  height: 100vh;
 
   justify-content: center;
   align-items: center;
 
   background: ${(props) => props.theme.color.background};
+`;
+
+const StyledContainerInputFile = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  align-items: center;
+  padding: 10rem;
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+
+  margin-top: 5rem;
+`;
+
+const StyledTitle = styled.h1`
+  font-size: 3.6rem;
+  font-weight: 600;
+
+  text-align: center;
+  padding-bottom: 1rem;
+
+  color: ${(props) => props.theme.color.blue};
 `;
 
 const StyledForm = styled.form`
@@ -52,15 +77,24 @@ const StyledLabel = styled.label`
   border-radius: 10px;
 
   color: #fff;
-  background: #34495e;
+  background: ${(props) => props.theme.color.loginBackground};
 `;
 
 const StyledButton = styled.button`
   display: flex;
-  width: 100%;
+  width: calc(100% - 2rem);
 
-  padding: 1.4rem 4.5rem;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
   font-size: 1.5rem;
+  font-weight: 600;
+
+  border: 0;
+
+  color: ${(props) => props.theme.color.white};
+  background: ${(props) => props.theme.color.blue};
 
   transition: filter 0.2s;
 
@@ -69,11 +103,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledSecondaryContainer = styled.div`
+const StyledRankList = styled.div`
   display: flex;
   flex-direction: column;
 
-  height: 100%;
   width: 100%;
 
   align-items: center;
@@ -91,7 +124,7 @@ const StyledWidgetList = styled.div`
   width: 100%;
   padding: 1rem;
 
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 
   align-items: center;
   justify-content: center;
@@ -102,9 +135,12 @@ const StyledWidgetList = styled.div`
 export {
   StyledContainer,
   StyledForm,
+  StyledImage,
   StyledInput,
   StyledLabel,
   StyledButton,
   StyledWidgetList,
-  StyledSecondaryContainer,
+  StyledContainerInputFile,
+  StyledRankList,
+  StyledTitle,
 };
