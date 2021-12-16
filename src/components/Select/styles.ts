@@ -1,28 +1,40 @@
 import styled from 'styled-components';
 
-const StyledSelect = styled.select`
-  position: relative;
-  min-width: 200px;
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
 
-  svg {
-    position: absolute;
-    right: 12px;
-    top: calc(50% - 3px);
-    width: 10px;
-    height: 6px;
-    stroke-width: 2px;
-    stroke: #9098a9;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    pointer-events: none;
-  }
+  gap: 0.5rem;
 `;
 
 const StyledLabel = styled.label`
-  margin-right: auto;
   font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto;
 `;
 
-export { StyledSelect, StyledLabel };
+const StyledSelect = styled.select`
+  width: 100%;
+  padding: 1rem;
+
+  background-color: ${(props) => props.theme.color.backgroundInput};
+  color: ${(props) => props.theme.color.textInputEntered};
+  border: 1px solid ${(props) => props.theme.color.borderInput};
+
+  &::placeholder {
+    color: ${(props) => props.theme.color.textInputEntered};
+  }
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.color.borderInput};
+    background-color: ${(props) => props.theme.color.backgroundInputFocused};
+    color: ${(props) => props.theme.color.textInputFocused};
+
+    &::placeholder {
+      color: #8f8a9b;
+    }
+  }
+`;
+
+export { StyledSelect, StyledLabel, StyledContainer };
