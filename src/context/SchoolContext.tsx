@@ -49,12 +49,16 @@ const SchoolContextProvider = ({ children }: SchoolContextProvideProps) => {
   };
 
   useEffect(() => {
+    setCurrentSchools(allSchools?.slice(0, 5));
+  }, [allSchools]);
+
+  useEffect(() => {
     if (!isFirstRender.current) {
-      setCurrentSchools(allSchools?.slice(0, 5));
+      setCurrentSchools(filteredSchools?.slice(0, 5));
     }
 
     isFirstRender.current = false;
-  }, [allSchools]);
+  }, [filteredSchools]);
 
   return (
     <SchoolContext.Provider
