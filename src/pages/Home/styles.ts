@@ -55,4 +55,56 @@ const StyledLabel = styled.label`
   background: #34495e;
 `;
 
-export { StyledContainer, StyledForm, StyledInput, StyledLabel };
+const StyledButton = styled.button`
+  display: flex;
+  width: 100%;
+
+  padding: 1.4rem 4.5rem;
+  font-size: 1.5rem;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;
+
+const StyledSecondaryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+  gap: 2rem;
+`;
+
+const StyledWidgetList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+
+  overflow-y: scroll;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2rem;
+`;
+
+export {
+  StyledContainer,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+  StyledButton,
+  StyledWidgetList,
+  StyledSecondaryContainer,
+};

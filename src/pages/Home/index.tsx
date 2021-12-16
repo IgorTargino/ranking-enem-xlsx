@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Form from '../../components/Form';
 import WidgetSchool from '../../components/WidgetSchool';
 import { useSchoolContext } from '../../context/SchoolContext';
@@ -7,14 +8,27 @@ import {
   StyledForm,
   StyledInput,
   StyledLabel,
+  StyledButton,
+  StyledWidgetList,
+  StyledSecondaryContainer,
 } from './styles';
 
 const Home = () => {
-  const { currentSchools, getSchoolData, loading, error } = useSchoolContext();
+  const {
+    currentSchools,
+    getSchoolData,
+    updateNumberLoadedSchool,
+    loading,
+    error,
+  } = useSchoolContext();
 
   const onSubmit = (file: File) => {
     getSchoolData(file);
   };
+
+  useEffect(() => {
+    console.log(currentSchools);
+  }, [currentSchools]);
 
   return (
     <StyledContainer>
@@ -30,15 +44,21 @@ const Home = () => {
           {error && <span>{error}</span>}
         </StyledForm>
       ) : (
-        <>
+        <StyledSecondaryContainer>
           <Form />
-          {currentSchools.map((school) => (
-            <WidgetSchool
-              school={school}
-              key={school['Média da escola (provas objetivas)']}
-            />
-          ))}
-        </>
+          <StyledWidgetList>
+            {currentSchools.map((school) => (
+              <WidgetSchool
+                school={school}
+                key={school['Média da escola (provas objetivas)']}
+              />
+            ))}
+          </StyledWidgetList>
+
+          <StyledButton onClick={() => updateNumberLoadedSchool()}>
+            Carregar mais
+          </StyledButton>
+        </StyledSecondaryContainer>
       )}
     </StyledContainer>
   );
