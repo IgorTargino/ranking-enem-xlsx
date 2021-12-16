@@ -100,8 +100,7 @@ const Form = () => {
     const newFilteredSchools = [...filteredDepAdmin];
 
     setFilteredSchools(newFilteredSchools);
-
-    console.log(UF, city, nameSchool, depAdmin, newFilteredSchools);
+    console.log(UF, city, nameSchool, depAdmin);
   }, [UF, city, nameSchool, depAdmin]);
 
   return (
@@ -134,6 +133,7 @@ const Form = () => {
           type="radio"
           name="DependeciaAdministrativa"
           value="Federal"
+          checked={depAdmin === 'Federal'}
           onChange={(event) => setDepAdmin(event.target.value)}
         />
         Federal
@@ -141,6 +141,7 @@ const Form = () => {
           type="radio"
           name="DependeciaAdministrativa"
           value="Estadual"
+          checked={depAdmin === 'Estadual'}
           onChange={(event) => setDepAdmin(event.target.value)}
         />
         Estadual
@@ -148,6 +149,7 @@ const Form = () => {
           type="radio"
           name="DependeciaAdministrativa"
           value="Municipal"
+          checked={depAdmin === 'Municipal'}
           onChange={(event) => setDepAdmin(event.target.value)}
         />
         Municipal
@@ -155,6 +157,7 @@ const Form = () => {
           type="radio"
           name="DependeciaAdministrativa"
           value="Privada"
+          checked={depAdmin === 'Privada'}
           onChange={(event) => setDepAdmin(event.target.value)}
         />
         Privada
