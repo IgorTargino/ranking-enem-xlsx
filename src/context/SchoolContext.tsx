@@ -17,7 +17,7 @@ interface SchoolContextProvideProps {
 interface SchoolContextData {
   loading: boolean;
   error: Error | undefined;
-  allSchools: School[] | undefined;
+  allSchools: School[];
   currentSchools: School[] | undefined;
   filteredSchools: School[] | undefined;
   getSchoolData: (value: File) => void;
@@ -31,7 +31,7 @@ const SchoolContextProvider = ({ children }: SchoolContextProvideProps) => {
   const isFirstRender = useRef(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [allSchools, setAllSchools] = useState<School[]>();
+  const [allSchools, setAllSchools] = useState<School[]>([]);
   const [currentSchools, setCurrentSchools] = useState<School[]>();
   const [filteredSchools, setFilteredSchools] = useState<School[]>();
 
@@ -41,16 +41,13 @@ const SchoolContextProvider = ({ children }: SchoolContextProvideProps) => {
       if (!file) throw new Error('Arquivo não encontrado!');
       const data = await readExcel(file);
       setAllSchools(data);
+      setFilteredSchools(data);
     } catch (err: any) {
       setError(err);
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    setCurrentSchools(allSchools?.slice(0, 5));
-  }, [allSchools]);
 
   useEffect(() => {
     if (!isFirstRender.current) {
