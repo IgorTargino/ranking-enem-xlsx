@@ -51,4 +51,24 @@ const StyledInput = styled.input`
   }
 `;
 
-export { StyledForm, StyledInputContainer, StyledIconContainer, StyledInput };
+const StyledRadioContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledRadioInput = styled.input`
+  width: 100%;
+`;
+
+export {
+  StyledForm,
+  StyledInputContainer,
+  StyledIconContainer,
+  StyledInput,
+  StyledRadioContainer,
+  StyledRadioInput,
+};

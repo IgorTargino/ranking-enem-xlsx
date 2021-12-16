@@ -2,15 +2,17 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useSchoolContext } from '../../context/SchoolContext';
+import School from '../../types/school';
 import noRepeatPushArray from '../../utils/noRepeatPushArray';
 
 import Select from '../Select';
-import School from '../../types/school';
 import {
   StyledForm,
   StyledInputContainer,
   StyledInput,
   StyledIconContainer,
+  StyledRadioContainer,
+  StyledRadioInput,
 } from './styles';
 
 const Form = () => {
@@ -19,6 +21,7 @@ const Form = () => {
   const [UF, setUF] = useState<string>('Todos');
   const [city, setCity] = useState<string>('Todos');
   const [nameSchool, setNameSchool] = useState<string>('');
+  const [depAdmin, setDepAdmin] = useState<string>('');
   const [optionsUF, setOptionsUF] = useState<string[]>([]);
   const [optionsCity, setOptionsCity] = useState<string[]>([]);
 
@@ -56,29 +59,50 @@ const Form = () => {
   }, [UF]);
 
   useEffect(() => {
-    const newFilteredSchools: School[] | undefined = [];
+    let filteredUF: School[] = [];
+    let filteredCity: School[] = [];
+    let filteredNameSchool: School[] = [];
+    let filteredDepAdmin: School[] = [];
 
-    if (UF === 'Todos' && nameSchool === '') setFilteredSchools(allSchools);
-    else {
-      allSchools?.forEach((school) => {
-        if (school.NO_ENTIDADE.startsWith(nameSchool.toUpperCase())) {
-          console.log('1');
-          newFilteredSchools.push(school);
-        } else if (city === 'Todos') {
-          if (school.SG_UF === UF) {
-            console.log('2');
-            newFilteredSchools.push(school);
-          }
-        } else if (school.NO_MUNICIPIO_ESC === city && school.SG_UF === UF) {
-          console.log('3');
-          newFilteredSchools.push(school);
-        }
+    if (UF !== 'Todos') {
+      filteredUF = allSchools.filter((school) => {
+        if (school.SG_UF === UF) return school;
       });
-      setFilteredSchools(newFilteredSchools);
+    } else {
+      filteredUF = [...allSchools];
     }
 
-    console.log(nameSchool, newFilteredSchools);
-  }, [UF, city, nameSchool]);
+    if (city !== 'Todos') {
+      filteredCity = filteredUF.filter((school) => {
+        if (school.NO_MUNICIPIO_ESC === city) return school;
+      });
+    } else {
+      filteredCity = [...filteredUF];
+    }
+
+    if (nameSchool !== '') {
+      filteredNameSchool = filteredCity.filter((school) => {
+        if (school.NO_ENTIDADE.startsWith(nameSchool.toUpperCase()))
+          return school;
+      });
+    } else {
+      filteredNameSchool = [...filteredCity];
+    }
+
+    if (depAdmin !== '') {
+      filteredDepAdmin = filteredNameSchool.filter((school) => {
+        if (school['Dependencia Administrativa'] === depAdmin) return school;
+      });
+    } else {
+      filteredDepAdmin = [...filteredNameSchool];
+    }
+
+    const newFilteredSchools = [...filteredDepAdmin];
+
+    setFilteredSchools(newFilteredSchools);
+
+    console.log(UF, city, nameSchool, depAdmin, newFilteredSchools);
+  }, [UF, city, nameSchool, depAdmin]);
 
   return (
     <StyledForm>
@@ -104,6 +128,37 @@ const Form = () => {
           value={nameSchool}
         />
       </StyledInputContainer>
+
+      <StyledRadioContainer>
+        <StyledRadioInput
+          type="radio"
+          name="DependeciaAdministrativa"
+          value="Federal"
+          onChange={(event) => setDepAdmin(event.target.value)}
+        />
+        Federal
+        <StyledRadioInput
+          type="radio"
+          name="DependeciaAdministrativa"
+          value="Estadual"
+          onChange={(event) => setDepAdmin(event.target.value)}
+        />
+        Estadual
+        <StyledRadioInput
+          type="radio"
+          name="DependeciaAdministrativa"
+          value="Municipal"
+          onChange={(event) => setDepAdmin(event.target.value)}
+        />
+        Municipal
+        <StyledRadioInput
+          type="radio"
+          name="DependeciaAdministrativa"
+          value="Privada"
+          onChange={(event) => setDepAdmin(event.target.value)}
+        />
+        Privada
+      </StyledRadioContainer>
     </StyledForm>
   );
 };
