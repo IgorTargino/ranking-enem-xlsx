@@ -1,4 +1,5 @@
 import Form from '../../components/Form';
+import WidgetSchool from '../../components/WidgetSchool';
 import { useSchoolContext } from '../../context/SchoolContext';
 
 import {
@@ -32,10 +33,10 @@ const Home = () => {
         <>
           <Form />
           {currentSchools.map((school) => (
-            <div key={school['Média da escola (provas objetivas)']}>
-              <h2>{school['Dependencia Administrativa']}</h2>
-              <h2>{school.NO_ENTIDADE}</h2>
-            </div>
+            <WidgetSchool
+              school={school}
+              key={school['Média da escola (provas objetivas)']}
+            />
           ))}
         </>
       )}
