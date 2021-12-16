@@ -60,6 +60,8 @@
                 "tsx": "never"
             }
         ],
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "array-callback-return": "off",
+        "consistent-return": "off"
     }
 }
