@@ -17,6 +17,12 @@ const ligth = {
     loginBackground: '#4953B8',
     primary: '#fff',
     secondary: '#f2f3f5',
+
+    backgroundInput: '#F5F4F6',
+    backgroundInputFocused: '#EBEAED',
+    borderInput: '#EBEAED',
+    textInputEntered: '#170C3A',
+    textInputFocused: '#8F8A9B',
   },
 };
 
