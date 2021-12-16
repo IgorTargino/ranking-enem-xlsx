@@ -9,9 +9,26 @@ const StyledForm = styled.form`
   width: 100%;
 
   padding: 1rem;
+  gap: 1rem;
 `;
 
 const StyledInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  gap: 0.5rem;
+`;
+
+const StyledLabel = styled.label`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto;
+`;
+
+const StyledWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -24,13 +41,12 @@ const StyledInputContainer = styled.div`
 
 const StyledIconContainer = styled.div`
   position: absolute;
-  left: 1rem;
+  right: 1rem;
 `;
 
 const StyledInput = styled.input`
   width: 100%;
   padding: 1rem;
-  padding-left: 3rem;
 
   background-color: ${(props) => props.theme.color.backgroundInput};
   color: ${(props) => props.theme.color.textInputEntered};
@@ -53,22 +69,30 @@ const StyledInput = styled.input`
 
 const StyledRadioContainer = styled.div`
   display: flex;
-  flex-direction: row;
   width: 100%;
 
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledLabelRadio = styled.label`
+  display: flex;
+
+  font-size: 1.2rem;
 `;
 
 const StyledRadioInput = styled.input`
-  width: 100%;
+  margin-right: 0.3rem;
 `;
 
 export {
   StyledForm,
   StyledInputContainer,
+  StyledWrapper,
+  StyledLabel,
   StyledIconContainer,
   StyledInput,
   StyledRadioContainer,
   StyledRadioInput,
+  StyledLabelRadio,
 };

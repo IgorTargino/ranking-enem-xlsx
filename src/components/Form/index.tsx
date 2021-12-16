@@ -9,10 +9,13 @@ import Select from '../Select';
 import {
   StyledForm,
   StyledInputContainer,
+  StyledWrapper,
+  StyledLabel,
   StyledInput,
   StyledIconContainer,
   StyledRadioContainer,
   StyledRadioInput,
+  StyledLabelRadio,
 } from './styles';
 
 const Form = () => {
@@ -24,6 +27,12 @@ const Form = () => {
   const [depAdmin, setDepAdmin] = useState<string>('');
   const [optionsUF, setOptionsUF] = useState<string[]>([]);
   const [optionsCity, setOptionsCity] = useState<string[]>([]);
+
+  const handleClick = (value: string) => {
+    console.log(depAdmin, value);
+    if (depAdmin === value) setDepAdmin('');
+    else setDepAdmin(value);
+  };
 
   useLayoutEffect(() => {
     const newOptionsUF = [...optionsUF];
@@ -100,7 +109,6 @@ const Form = () => {
     const newFilteredSchools = [...filteredDepAdmin];
 
     setFilteredSchools(newFilteredSchools);
-    console.log(UF, city, nameSchool, depAdmin);
   }, [UF, city, nameSchool, depAdmin]);
 
   return (
@@ -115,52 +123,67 @@ const Form = () => {
         name="Cidade"
         onChange={(event) => setCity(event.target.value)}
       />
+
       <StyledInputContainer>
-        <StyledIconContainer>
-          <BsSearch size={15} />
-        </StyledIconContainer>
-        <StyledInput
-          name="Escola"
-          type="search"
-          placeholder="Busque pelo nome"
-          onChange={(event) => setNameSchool(event.target.value)}
-          value={nameSchool}
-        />
+        <StyledLabel htmlFor="Escola">Escola</StyledLabel>
+        <StyledWrapper>
+          <StyledIconContainer>
+            <BsSearch size={15} />
+          </StyledIconContainer>
+          <StyledInput
+            name="Escola"
+            type="search"
+            placeholder="Busque pelo nome"
+            onChange={(event) => setNameSchool(event.target.value)}
+            value={nameSchool}
+          />
+        </StyledWrapper>
       </StyledInputContainer>
 
       <StyledRadioContainer>
-        <StyledRadioInput
-          type="radio"
-          name="DependeciaAdministrativa"
-          value="Federal"
-          checked={depAdmin === 'Federal'}
-          onChange={(event) => setDepAdmin(event.target.value)}
-        />
-        Federal
-        <StyledRadioInput
-          type="radio"
-          name="DependeciaAdministrativa"
-          value="Estadual"
-          checked={depAdmin === 'Estadual'}
-          onChange={(event) => setDepAdmin(event.target.value)}
-        />
-        Estadual
-        <StyledRadioInput
-          type="radio"
-          name="DependeciaAdministrativa"
-          value="Municipal"
-          checked={depAdmin === 'Municipal'}
-          onChange={(event) => setDepAdmin(event.target.value)}
-        />
-        Municipal
-        <StyledRadioInput
-          type="radio"
-          name="DependeciaAdministrativa"
-          value="Privada"
-          checked={depAdmin === 'Privada'}
-          onChange={(event) => setDepAdmin(event.target.value)}
-        />
-        Privada
+        <StyledLabelRadio>
+          <StyledRadioInput
+            type="checkbox"
+            name="DependeciaAdministrativa"
+            value="Federal"
+            checked={depAdmin === 'Federal'}
+            onChange={(event) => handleClick(event.target.value)}
+          />
+          Federal
+        </StyledLabelRadio>
+
+        <StyledLabelRadio>
+          <StyledRadioInput
+            type="checkbox"
+            name="DependeciaAdministrativa"
+            value="Estadual"
+            checked={depAdmin === 'Estadual'}
+            onChange={(event) => handleClick(event.target.value)}
+          />
+          Estadual
+        </StyledLabelRadio>
+
+        <StyledLabelRadio>
+          <StyledRadioInput
+            type="checkbox"
+            name="DependeciaAdministrativa"
+            value="Municipal"
+            checked={depAdmin === 'Municipal'}
+            onChange={(event) => handleClick(event.target.value)}
+          />
+          Municipal
+        </StyledLabelRadio>
+
+        <StyledLabelRadio>
+          <StyledRadioInput
+            type="checkbox"
+            name="DependeciaAdministrativa"
+            value="Privada"
+            checked={depAdmin === 'Privada'}
+            onChange={(event) => handleClick(event.target.value)}
+          />
+          Privada
+        </StyledLabelRadio>
       </StyledRadioContainer>
     </StyledForm>
   );
