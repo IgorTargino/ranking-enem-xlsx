@@ -8,7 +8,7 @@ const StyledForm = styled.form`
 
   width: 100%;
 
-  padding: 1.6rem;
+  padding: 1rem;
 `;
 
 const StyledInputContainer = styled.div`
