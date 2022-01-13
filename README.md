@@ -1,6 +1,9 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![Last commit](https://img.shields.io/github/github/last-commit/IgorTargino/ranking-enem-xlsx)
+# Ranking Inep
+
+![GitHub language count](https://img.shields.io/github/languages/count/IgorTargino/ranking-enem-xlsx?color=%2304D361&style=flat)
+![Repository size](https://img.shields.io/github/repo-size/IgorTargino/ranking-enem-xlsx?style=flat)
+![GitHub last commit](https://img.shields.io/github/last-commit/IgorTargino/ranking-enem-xlsx?style=flat)
+![License](https://img.shields.io/badge/license-MIT-brightgreen?style=flat)
 
 ## 🧐 Sobre o projeto
 
