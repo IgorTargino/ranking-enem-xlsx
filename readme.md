@@ -29,15 +29,3 @@ Não utilize API ou backend para acessar os dados pelo front-end.
 
 Você pode utilizar Node ou outros scripts como pre-processadores como, por exemplo, separar os dados em vários arquivos (não é necessário)
 
-## :watch: Prazo
-
-A data de entrega com case solucionado e apresentação pronta para nossa validação deverá ser até 16.dez.21 (quinta) às 17h.
-
-## :e-mail: Dúvidas 
-
-Qualquer dúvida pode mandar um email para rubens.alencar[@]grupofolha.com.br e rogerio.pilker[@]grupofolha.com.br
-
-E é isso! Boa sorte! :smile:
-
-
-
